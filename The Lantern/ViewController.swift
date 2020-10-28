@@ -38,8 +38,8 @@ class ViewController: UIViewController {
         view.backgroundColor = newColor
         currentColor = newColor
     }
-
-    @IBAction func buttonPressed() {
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         updateColor()
     }
 }
