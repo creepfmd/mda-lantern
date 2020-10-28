@@ -9,7 +9,16 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    var currentColor: UIColor = .green
+    var currentColorIndex: Int = -1
+    let availableColors: [UIColor] = [
+        .red,
+        .orange,
+        .yellow,
+        .green,
+        .cyan,
+        .blue,
+        .purple,
+    ]
     
     override var prefersStatusBarHidden: Bool {
         return true
@@ -24,19 +33,14 @@ class ViewController: UIViewController {
     fileprivate func updateColor() {
         var newColor: UIColor
 
-        switch currentColor {
-        case .yellow:
-            newColor = .green
-        case .green:
-            newColor = .red
-        case .red:
-            newColor = .yellow
-        default:
-            newColor = .green
+        currentColorIndex += 1
+        if currentColorIndex == availableColors.count {
+            currentColorIndex = 0
         }
+        
+        newColor = availableColors[currentColorIndex]
 
         view.backgroundColor = newColor
-        currentColor = newColor
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
