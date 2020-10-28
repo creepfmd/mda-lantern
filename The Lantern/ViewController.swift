@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
 
+    var torchOn = false
     var currentColorIndex: Int = -1
     let availableColors: [UIColor] = [
         .red,
@@ -43,8 +45,32 @@ class ViewController: UIViewController {
         view.backgroundColor = newColor
     }
     
+    func toggleTorch(on: Bool) {
+        guard let device = AVCaptureDevice.default(for: .video) else { return }
+
+        if device.hasTorch {
+            do {
+                try device.lockForConfiguration()
+
+                if on == true {
+                    device.torchMode = .on
+                } else {
+                    device.torchMode = .off
+                }
+
+                device.unlockForConfiguration()
+            } catch {
+                print("Torch could not be used")
+            }
+        } else {
+            print("Torch is not available")
+        }
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         updateColor()
+        toggleTorch(on: torchOn)
+        torchOn.toggle()
     }
 }
 
