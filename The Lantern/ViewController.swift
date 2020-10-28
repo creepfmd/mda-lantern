@@ -10,7 +10,7 @@ import AVFoundation
 
 class ViewController: UIViewController {
 
-    var torchOn = false
+    var torchIsOn = false
     var currentColorIndex: Int = -1
     let availableColors: [UIColor] = [
         .red,
@@ -69,8 +69,8 @@ class ViewController: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         updateColor()
-        toggleTorch(on: torchOn)
-        torchOn.toggle()
+        toggleTorch(on: torchIsOn)
+        torchIsOn.toggle()
     }
 }
 
