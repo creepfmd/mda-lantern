@@ -11,16 +11,16 @@ class ViewController: UIViewController {
 
     var currentColor: UIColor = .green
     
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         updateColor()
     }
 
-    @IBAction func buttonPressed() {
-        updateColor()
-    }
-    
     fileprivate func updateColor() {
         var newColor: UIColor
 
@@ -37,6 +37,10 @@ class ViewController: UIViewController {
 
         view.backgroundColor = newColor
         currentColor = newColor
+    }
+
+    @IBAction func buttonPressed() {
+        updateColor()
     }
 }
 
